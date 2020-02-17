@@ -10,11 +10,12 @@ namespace LemonadeStand_3DayStarter
     {
         public List<Customer> customers;
         public Weather weather;
-
+        public int currentDay;
         public Day()
         {
             customers = new List<Customer>() { };
             //weather = new Weather();
+            currentDay = 1;
         }
     }
 }
