@@ -11,20 +11,21 @@ namespace LemonadeStand_3DayStarter
         public string condition;
         public int temperature;
         List<string> weatherConditions;
-        Random random = new Random();
+       
 
-        public Weather()
+        public Weather(Random rnd)
         {
             
             weatherConditions = new List<string>() {"Cloudy", "Rainy", "Sunny", "Foggy" };
-            temperature = random.Next(55, 105);
-            
+            temperature = rnd.Next(55, 105);
+            TodaysWeather(rnd);
         }
-        public void TodaysWeather()
+        public void TodaysWeather(Random rnd)
         {
-            int random = this.random.Next(0, 4);
-            condition = weatherConditions[random];
-            Console.ReadLine();
+            
+            condition = weatherConditions[rnd.Next(0,4)];
+            Console.WriteLine($"{condition} {temperature}");
+           
         }
        
     }

@@ -8,21 +8,21 @@ namespace LemonadeStand_3DayStarter
 {
     class Customer
     {
-        private List<string> names;
+        public List<string> names;
         public string name;
-        Random rnd = new Random();
+        
 
-        public Customer(string name)
+        public Customer(Random rnd)
         {
             
             names = new List<string>() {"Steve","Stacy","Juan","Juanita","Amelia","Isaac","Ezra","Genesis","Emeli","Jonathan","Elaine","Alejandra","Emilio","Nehemiah","Manuel",};
-
+            GetCustomer(rnd);
         }
-        public void GetCustomer()
+        public void GetCustomer(Random rnd)
         {
-            int rnd = this.rnd.Next(0, 14);
-            name = names[rnd];
-            Console.ReadLine();
+            
+            name = names[rnd.Next(0,15)];
+            
         }
         
     }

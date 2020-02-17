@@ -10,7 +10,7 @@ namespace LemonadeStand_3DayStarter
     {
         // member variables (HAS A)
         public string name;
-        public int numberOf;
+        public int price;
 
         // constructor (SPAWNER)
         static Item()
