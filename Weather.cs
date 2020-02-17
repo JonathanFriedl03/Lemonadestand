@@ -16,7 +16,12 @@ namespace LemonadeStand_3DayStarter
         {
             this.condition = condition;
             this.temperature = temperature;
-            weatherConditions = new List<string>() { };
+            weatherConditions = new List<string>() {"Cloudy", "Rainy", "Sunny", "Foggy" };
         }
+        public void TodaysWeather()
+        {
+           
+        }
+       
     }
 }
