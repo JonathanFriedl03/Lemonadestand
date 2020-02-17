@@ -22,6 +22,7 @@ namespace LemonadeStand_3DayStarter
             sugarCubes = new List<SugarCube>();
             iceCubes = new List<IceCube>();
             cups = new List<Cup>();
+           
         }
 
         // member methods (CAN DO)
@@ -31,6 +32,7 @@ namespace LemonadeStand_3DayStarter
             {
                 Lemon lemon = new Lemon();
                 lemons.Add(lemon);
+                wallet.PayMoneyForItems(double transactionAmount);
             }
         }
 
@@ -40,6 +42,7 @@ namespace LemonadeStand_3DayStarter
             {
                 SugarCube sugarCube = new SugarCube();
                 sugarCubes.Add(sugarCube);
+                
             }
         }
 

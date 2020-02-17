@@ -17,13 +17,31 @@ namespace LemonadeStand_3DayStarter
         {
             
             weatherConditions = new List<string>() {"Cloudy", "Rainy", "Sunny", "Foggy" };
-            temperature = rnd.Next(55, 105);
-            TodaysWeather(rnd);
+            condition = weatherConditions[rnd.Next(0, 4)];
+            temperature = TodaysWeather(rnd);
         }
-        public void TodaysWeather(Random rnd)
+        public int TodaysWeather(Random rnd)
         {
-            
-            condition = weatherConditions[rnd.Next(0,4)];
+            if (condition == "Sunny")
+            {
+                temperature = rnd.Next(75, 105);
+            }
+            else if (condition == "Cloudy & Humid")
+            {
+                temperature = rnd.Next(65, 85);
+            }
+            else if (condition == "Foggy")
+            {
+                temperature = rnd.Next(5, 75);
+            }
+            else
+            {
+                temperature = rnd.Next(55, 70);
+            }
+            return temperature;
+
+
+
             Console.WriteLine($"{condition} {temperature}");
            
         }

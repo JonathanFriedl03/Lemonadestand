@@ -14,7 +14,7 @@ namespace LemonadeStand_3DayStarter
         public IceCube()
         {
             name = "ice cube(s)";
-            
+           
         }
 
         // member methods (CAN DO)

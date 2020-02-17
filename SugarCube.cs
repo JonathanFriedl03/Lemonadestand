@@ -14,6 +14,7 @@ namespace LemonadeStand_3DayStarter
         public SugarCube()
         {
             name = "sugar cube(s)";
+            
         }
 
         // member methods (CAN DO)
