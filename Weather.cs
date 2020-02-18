@@ -16,7 +16,7 @@ namespace LemonadeStand_3DayStarter
         public Weather(Random rnd)
         {
             
-            weatherConditions = new List<string>() {"Cloudy", "Rainy", "Sunny", "Foggy" };
+            weatherConditions = new List<string>() {"Cloudy & Humid", "Rainy", "Sunny", "Foggy" };
             condition = weatherConditions[rnd.Next(0, 4)];
             temperature = TodaysWeather(rnd);
         }
@@ -42,7 +42,7 @@ namespace LemonadeStand_3DayStarter
 
 
 
-            Console.WriteLine($"{condition} {temperature}");
+            //Console.WriteLine($"{condition} {temperature}");
            
         }
        

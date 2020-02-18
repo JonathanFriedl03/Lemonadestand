@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {
-    class Pitcher : Item
+    class Pitcher 
     {
         public int cupsLeftinPitcher;
+        public string name;
+       
 
          public Pitcher()
         {
             name = "Pitcher";
-            cupsLeftinPitcher = 10;
+            cupsLeftinPitcher = 0;
 
         }
 
-        public void PourLemonade()
+        public void RecipeToPitcher(Player player)
         {
+          
+            player.inventory.lemons.RemoveRange(0, player.recipe.amountOfLemons);
+            player.inventory.sugarCubes.RemoveRange(0, player.recipe.amountOfSugarCubes);
+            player.inventory.iceCubes.RemoveRange(0, player.recipe.amountOfIceCubes);
+            cupsLeftinPitcher++;
 
         }
     }

@@ -10,7 +10,6 @@ namespace LemonadeStand_3DayStarter
     {
         public Day day;
         public Store store;
-        public Recipe recipe;
         public Player player;
         public List<Day> days;
         Random rnd = new Random();
@@ -18,18 +17,23 @@ namespace LemonadeStand_3DayStarter
         // List<Player> players;
         public Game()
         {
-           
-           
+             day = new Day(rnd);
+             store = new Store();
             //players = new List<Player>();
-           
+            
         }
 
         public void StartUp()
         {
+            
            // DisplayGameRules();
             GetName();
-            DisplayTodaysData(rnd);
-            DisplayTodaysInventory();
+            day.DisplayTodaysWeather(rnd);
+           
+            // DisplayTodaysInventory();
+            BuyProduct(player);
+            player.recipe.CreateRecipe(player);
+            player.pitcher.RecipeToPitcher(player);
         }
         public void DisplayGameRules()
         {
@@ -63,27 +67,28 @@ namespace LemonadeStand_3DayStarter
 
 
         //}
-        public void DisplayTodaysData(Random rnd)
-        {
-            Day today = new Day(rnd);
-            Console.WriteLine($"\nOn day {today.currentDay} the forecast is {today.weather.condition} and the temperature is {today.weather.temperature}.");
-            Console.WriteLine($"\nYou have {player.inventory.lemons.Count} lemons, {player.inventory.sugarCubes.Count} sugar cubes, {player.inventory.iceCubes.Count} ice cubes, and {player.inventory.cups.Count} cups.");
-            Console.WriteLine($"\nBased upon the weather determine how much product to stock up on to make Lemonade! \n\nOne pitcher makes 10 cups of Lemonade.\n\nA pitcher has 30 Ice Cubes, 10 Lemons, and either 0, 10, or 20 sugar Cubes. Depending on how sweet or sour you want it!\n\nLets start with Lemons...");
+        //public void DisplayTodaysData(Random rnd)
+        //{
+        //    Day today = new Day(rnd);
+        //    Console.WriteLine($"\nOn day {today.currentDay} the forecast is {today.weather.condition} and the temperature is {today.weather.temperature}.");
+        //    Console.WriteLine($"\nYou have {player.inventory.lemons.Count} lemons, {player.inventory.sugarCubes.Count} sugar cubes, {player.inventory.iceCubes.Count} ice cubes, and {player.inventory.cups.Count} cups.");
+        //    Console.WriteLine($"\nBased upon the weather determine how much product to stock up on to make Lemonade! \n\nOne pitcher makes 10 cups of Lemonade.\n\nA pitcher has 30 Ice Cubes, 10 Lemons, and either 0, 10, or 20 sugar Cubes. Depending on how sweet or sour you want it!\n\nLets start with Lemons...");
             
-        }
-        public void BuyProduct()
+        //}
+        public void BuyProduct(Player player)
         {
-            Store store = new Store();
-            Console.WriteLine($"Lemons cost ${ Store.pricePerLemon}. How many Lemons do you want to buy?");
+            
+            store.SellLemons(player);
+            store.SellIceCubes(player);
+            store.SellSugarCubes(player);
+            store.SellCups(player);
+          
+            Console.WriteLine("Great now we can make Lemonade!");
         //    int numberOfLemons = Int32.Parse(Console.ReadLine());
         //    player.inventory.AddLemonsToInventory(numberOfLemons);
         }
 
-        public void DisplayTodaysInventory()
-        {
-            Console.WriteLine("\nHow many pitchers do you want to buy?");
-            
-        }
+      
     }
 }
 

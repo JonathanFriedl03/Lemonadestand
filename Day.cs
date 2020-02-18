@@ -15,11 +15,20 @@ namespace LemonadeStand_3DayStarter
         public int currentDay;
         public Day(Random rnd)
         {
+            customers = new List<Customer>();
             customer = new Customer(rnd);
             weather = new Weather(rnd);
             currentDay = 1;
             daysOfMonth = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
         }
+         public void DisplayTodaysWeather(Random rnd)
+        {
+            weather.TodaysWeather(rnd);
+            Console.WriteLine($"\nOn day {currentDay} the forecast is {weather.condition} and the temperature is {weather.temperature}.");
+            
+        }
+
+
         public void GetCustomers(Weather weather,Random random)
         {
             int numberOfCustomers = 0;

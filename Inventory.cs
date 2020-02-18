@@ -32,7 +32,7 @@ namespace LemonadeStand_3DayStarter
             {
                 Lemon lemon = new Lemon();
                 lemons.Add(lemon);
-                wallet.PayMoneyForItems(double transactionAmount);
+                //wallet.PayMoneyForItems(double transactionAmount);
             }
         }
 

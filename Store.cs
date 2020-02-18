@@ -14,6 +14,34 @@ namespace LemonadeStand_3DayStarter
         private double pricePerIceCube;
         private double pricePerCup;
 
+        public double PricePerLemon
+        {
+            get
+            {
+                return pricePerLemon;
+            } 
+        }
+        public double PricePerSugarCube
+        {
+            get
+            {
+                return pricePerSugarCube;
+            }
+        }
+        public double PricePerIceCube
+        {
+            get
+            {
+                return pricePerIceCube;
+            }
+        }
+        public double PricePerCup
+        {
+            get
+            {
+                return pricePerCup;
+            }
+        }
         // constructor (SPAWNER)
         public Store()
         {
@@ -37,7 +65,7 @@ namespace LemonadeStand_3DayStarter
 
         public void SellSugarCubes(Player player)
         {
-            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar");
+            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar cubes");
             double transactionAmount = CalculateTransactionAmount(sugarToPurchase, pricePerSugarCube);
             if(player.wallet.Money >= transactionAmount)
             {
