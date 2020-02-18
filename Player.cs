@@ -23,6 +23,8 @@ namespace LemonadeStand_3DayStarter
             inventory = new Inventory();
             wallet = new Wallet();
         }
+        
+
 
         // member methods (CAN DO)
     }

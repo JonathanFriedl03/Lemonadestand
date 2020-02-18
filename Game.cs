@@ -17,10 +17,10 @@ namespace LemonadeStand_3DayStarter
         // List<Player> players;
         public Game()
         {
-             day = new Day(rnd);
-             store = new Store();
+            day = new Day(rnd);
+            store = new Store();
             //players = new List<Player>();
-            
+
         }
 
         public void StartUp()
@@ -33,7 +33,7 @@ namespace LemonadeStand_3DayStarter
             // DisplayTodaysInventory();
             BuyProduct(player);
             player.recipe.CreateRecipe(player);
-            player.pitcher.RecipeToPitcher(player);
+            player.inventory.RecipeUsed(player);
         }
         public void DisplayGameRules()
         {
@@ -82,11 +82,14 @@ namespace LemonadeStand_3DayStarter
             store.SellIceCubes(player);
             store.SellSugarCubes(player);
             store.SellCups(player);
-          
+            player.pitcher.cupsLeftinPitcher = player.inventory.cups.Count;
+
+
             Console.WriteLine("Great now we can make Lemonade!");
         //    int numberOfLemons = Int32.Parse(Console.ReadLine());
         //    player.inventory.AddLemonsToInventory(numberOfLemons);
         }
+        
 
       
     }

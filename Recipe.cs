@@ -11,8 +11,8 @@ namespace LemonadeStand_3DayStarter
         public int amountOfLemons;
         public int amountOfSugarCubes;
         public int amountOfIceCubes;
-        public double pricePerCup;
-
+        public double amountofCups;
+        public string sweetness;
         public Recipe()
         {
                
@@ -22,20 +22,29 @@ namespace LemonadeStand_3DayStarter
         {
             try
             {
-                Console.WriteLine($"How many lemons do you want to use? available ={player.inventory.lemons.Count}");
-                int lemons = int.Parse(Console.ReadLine());
-                CheckInventory(lemons, player.inventory.lemons.Count);
-                Console.WriteLine("How many Sugar Cubes do you want to use?");
-                int sugarCubes = int.Parse(Console.ReadLine());
-                Console.WriteLine("How many Ice Cubes do you want to use?");
-                
-                int iceCubes = int.Parse(Console.ReadLine());
-                Console.WriteLine("How much do ypu want to sell each cup of Lemonade for?");
-                int cupPrice = int.Parse(Console.ReadLine());
-                amountOfLemons = lemons;
-                amountOfSugarCubes = sugarCubes;
-                amountOfIceCubes = iceCubes;
-                pricePerCup = cupPrice;
+                bool inventoryCheck = false;
+                do
+                {
+                   Console.WriteLine($"How many lemons do you want to use? available ={player.inventory.lemons.Count}");
+                   amountOfLemons = int.Parse(Console.ReadLine());
+                   inventoryCheck = CheckInventory(amountOfLemons, player.inventory.lemons.Count);
+                } while (inventoryCheck == false);
+                do 
+                {
+                    Console.WriteLine($"How many Sugar Cubes do you want to use? available ={player.inventory.sugarCubes.Count}");
+                    amountOfSugarCubes = int.Parse(Console.ReadLine());
+                    inventoryCheck = CheckInventory(amountOfSugarCubes, player.inventory.sugarCubes.Count);
+                } while (inventoryCheck == false);
+                do
+                {
+                    Console.WriteLine($"How many Ice Cubes do you want to use? available ={player.inventory.iceCubes.Count}");
+                    amountOfIceCubes = int.Parse(Console.ReadLine());
+                    inventoryCheck = CheckInventory(amountOfIceCubes, player.inventory.iceCubes.Count);
+                } while (inventoryCheck == false);
+              
+                    Console.WriteLine("How much do you want to sell each cup of Lemonade for?");
+                amountofCups = int.Parse(Console.ReadLine());                   
+               
             }
             catch (FormatException)
             {
@@ -46,6 +55,7 @@ namespace LemonadeStand_3DayStarter
         }
         public bool CheckInventory(int numberOf, int stock)
         {
+
             if (numberOf > stock)
             {
                 return false;
@@ -53,13 +63,26 @@ namespace LemonadeStand_3DayStarter
             else
             {
                 return true;
-            }
+            }     
+        
         }
        public void DetermineSweetSour()
         {
-            if(amountOfLemons >= 0 && amountOfLemons <=5)
+            if (amountOfLemons >= 0 && amountOfLemons <= 5 && amountOfIceCubes >= 15 && amountOfSugarCubes <= 5)
             {
-                
+                sweetness = "Watery";
+            }
+            else if (amountOfLemons >= 15 && amountOfIceCubes <= 15 && amountOfSugarCubes <= 5)
+            {
+                sweetness = "Sour";
+            }
+            else if (amountOfLemons >= 6 && amountOfIceCubes >= 10 && amountOfSugarCubes <= 7)
+            {
+                sweetness = "Just Right";
+            }
+            else if(amountOfLemons >= 5 && amountOfIceCubes >= 7 && amountOfSugarCubes >= 10)
+            {
+                sweetness = "Sweet";
             }
         }
     }

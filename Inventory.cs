@@ -63,5 +63,14 @@ namespace LemonadeStand_3DayStarter
                 cups.Add(cup);
             }
         }
+        public void RecipeUsed(Player player)
+        {
+
+            player.inventory.lemons.RemoveRange(0, player.recipe.amountOfLemons);
+            player.inventory.sugarCubes.RemoveRange(0, player.recipe.amountOfSugarCubes);
+            player.inventory.iceCubes.RemoveRange(0, player.recipe.amountOfIceCubes);
+            //player.inventory.cups.RemoveRange(0, player.recipe.amountofCups);
+
+        }
     }
 }

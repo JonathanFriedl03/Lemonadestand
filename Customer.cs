@@ -10,20 +10,29 @@ namespace LemonadeStand_3DayStarter
     {
         public List<string> names;
         public string name;
-        
+        public List<string> preferences;
+        public string preference;
+        public List<double> paypreferences;
+        public double paypreference;
+
 
         public Customer(Random rnd)
-        {
-            
+        {            
             names = new List<string>() {"Steve","Stacy","Juan","Juanita","Amelia","Isaac","Ezra","Genesis","Emeli","Jonathan","Elaine","Alejandra","Emilio","Nehemiah","Manuel",};
-            GetCustomer(rnd);
+            preferences = new List<string>() { "Sweet", "Sour", "Just Right", "Watery" };
+            paypreferences = new List<double>() { .55, .60, .70, .75, .80, .85, .90, .95, 1.0, 1.10, 1.15, 1.20, 1.25, 1.35, 1.4, 1.5 };
+            name = names[rnd.Next(names.Count)];
+            preference = preferences[rnd.Next(preferences.Count)];
+            paypreference = paypreferences[rnd.Next(paypreferences.Count)];            
         }
-        public void GetCustomer(Random rnd)
+        public void WillCustomerBuy()
         {
-            
-            name = names[rnd.Next(0,15)];
-            
+            bool customerWillBuy = false;
+            if()
+            {
+
+            }
         }
-        
+
     }
 }

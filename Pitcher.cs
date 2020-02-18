@@ -19,14 +19,6 @@ namespace LemonadeStand_3DayStarter
 
         }
 
-        public void RecipeToPitcher(Player player)
-        {
-          
-            player.inventory.lemons.RemoveRange(0, player.recipe.amountOfLemons);
-            player.inventory.sugarCubes.RemoveRange(0, player.recipe.amountOfSugarCubes);
-            player.inventory.iceCubes.RemoveRange(0, player.recipe.amountOfIceCubes);
-            cupsLeftinPitcher++;
-
-        }
+       
     }
 }

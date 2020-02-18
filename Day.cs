@@ -13,10 +13,10 @@ namespace LemonadeStand_3DayStarter
         public Customer customer;
         public Weather weather;
         public int currentDay;
+       
         public Day(Random rnd)
         {
             customers = new List<Customer>();
-            customer = new Customer(rnd);
             weather = new Weather(rnd);
             currentDay = 1;
             daysOfMonth = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
