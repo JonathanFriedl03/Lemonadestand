@@ -17,23 +17,35 @@ namespace LemonadeStand_3DayStarter
         // List<Player> players;
         public Game()
         {
-            day = new Day(rnd);
-            store = new Store();
+           
             //players = new List<Player>();
 
         }
 
         public void StartUp()
         {
-            
-           // DisplayGameRules();
-            GetName();
-            day.DisplayTodaysWeather(rnd);
-           
-            // DisplayTodaysInventory();
-            BuyProduct(player);
-            player.recipe.CreateRecipe(player);
-            player.inventory.RecipeUsed(player);
+            if (player.wallet.Money > 0)
+            {
+                day = new Day(rnd);
+                store = new Store();
+                for (int i = 0; i < 7; i++) 
+                {                    
+                    // DisplayGameRules();
+                    GetName();
+                    day.DisplayTodaysWeather(rnd);
+                     //DisplayTodaysInventory();
+                    BuyProduct(player);
+                    player.recipe.CreateRecipe(player);
+                    player.inventory.RecipeUsed(player);
+                    player.recipe.DetermineSweetSour();
+
+                    for (int j = 0; j < day.customers.Count; j++)
+                    {
+                        day.customers[j].WillCustomerBuy(player, day);
+                    }
+                }
+                 day.daysOfMonth.Add(new Day(rnd)); 
+            }
         }
         public void DisplayGameRules()
         {

@@ -11,7 +11,7 @@ namespace LemonadeStand_3DayStarter
         public int amountOfLemons;
         public int amountOfSugarCubes;
         public int amountOfIceCubes;
-        public double amountofCups;
+        public double pricePerCup;
         public string sweetness;
         public Recipe()
         {
@@ -43,7 +43,7 @@ namespace LemonadeStand_3DayStarter
                 } while (inventoryCheck == false);
               
                     Console.WriteLine("How much do you want to sell each cup of Lemonade for?");
-                amountofCups = int.Parse(Console.ReadLine());                   
+                pricePerCup = double.Parse(Console.ReadLine());                   
                
             }
             catch (FormatException)

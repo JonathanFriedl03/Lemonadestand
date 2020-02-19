@@ -17,6 +17,10 @@ namespace LemonadeStand_3DayStarter
             {
                 return money;
             }
+            set
+            {
+                money = value;
+            }
         }
 
         public Wallet()
@@ -28,6 +32,10 @@ namespace LemonadeStand_3DayStarter
         {
             
             money -= transactionAmount;
+        }
+        public void SalesFromTransaction(double transactionAmount)
+        {
+            money += transactionAmount;
         }
     }
 }

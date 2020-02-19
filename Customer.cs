@@ -25,14 +25,27 @@ namespace LemonadeStand_3DayStarter
             preference = preferences[rnd.Next(preferences.Count)];
             paypreference = paypreferences[rnd.Next(paypreferences.Count)];            
         }
-        public void WillCustomerBuy()
+        public void WillCustomerBuy(Player player,Day day)
         {
-            bool customerWillBuy = false;
-            if()
+            
+                        
+            if(paypreference >=  player.recipe.pricePerCup && preference == player.recipe.sweetness && player.inventory.cups.Count > 0)
             {
-
+               
+                    player.wallet.Money += paypreference;                   
+                    player.pitcher.cupsLeftinPitcher--;
+                    player.inventory.cups.Remove(player.inventory.cups[0]);        
+                
             }
+            else if(player.inventory.cups.Count == 0)
+                
+            {
+                Console.WriteLine("You're out of cups! Let's move on to the next day!");
+
+            }day.currentDay++;
+
         }
 
+       
     }
 }

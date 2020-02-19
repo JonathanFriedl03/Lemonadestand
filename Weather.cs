@@ -32,7 +32,7 @@ namespace LemonadeStand_3DayStarter
             }
             else if (condition == "Foggy")
             {
-                temperature = rnd.Next(5, 75);
+                temperature = rnd.Next(50, 75);
             }
             else
             {

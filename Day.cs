@@ -8,18 +8,18 @@ namespace LemonadeStand_3DayStarter
 {
     class Day
     {
-        public List<int> daysOfMonth;
+        public List<Day> daysOfMonth;
         public List<Customer> customers;
-        public Customer customer;
+       
         public Weather weather;
         public int currentDay;
-       
         public Day(Random rnd)
         {
             customers = new List<Customer>();
             weather = new Weather(rnd);
             currentDay = 1;
-            daysOfMonth = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            daysOfMonth = new List<Day>() ;
+            GetCustomers(rnd,weather);
         }
          public void DisplayTodaysWeather(Random rnd)
         {
@@ -29,7 +29,7 @@ namespace LemonadeStand_3DayStarter
         }
 
 
-        public void GetCustomers(Weather weather,Random random)
+        public void GetCustomers(Random random,Weather weather)
         {
             int numberOfCustomers = 0;
             if(weather.temperature >= 85 )
@@ -44,12 +44,13 @@ namespace LemonadeStand_3DayStarter
             {
                 numberOfCustomers = 20;
             }
-            else if (weather.temperature >= 55 && weather.temperature <= 75)
+            else if (weather.temperature >= 50 && weather.temperature <= 75)
             {
                 numberOfCustomers = 10;
             }
-            for (int i = 0; i < numberOfCustomers; i++) ;
-            customers.Add(new Customer(random));
+            for (int i = 0; i < numberOfCustomers; i++) { customers.Add(new Customer(random)); }
+            
+            
         }
         public void GetDayOfMonth()
         {
