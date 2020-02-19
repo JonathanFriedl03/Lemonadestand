@@ -31,19 +31,43 @@ namespace LemonadeStand_3DayStarter
                         
             if(paypreference >=  player.recipe.pricePerCup && preference == player.recipe.sweetness && player.inventory.cups.Count > 0)
             {
-               
-                    player.wallet.Money += paypreference;                   
+
+                    player.wallet.SalesFromTransaction(player.recipe.pricePerCup);                 
                     player.pitcher.cupsLeftinPitcher--;
-                    player.inventory.cups.Remove(player.inventory.cups[0]);        
-                
+                    player.inventory.cups.Remove(player.inventory.cups[0]);
+                Console.WriteLine($"{player.name} you made a sale! {name} bought a cup of Lemonade!");
+                   day.buyerCount++;
+                Console.ReadLine();
+                Console.Clear();
+
             }
             else if(player.inventory.cups.Count == 0)
                 
             {
                 Console.WriteLine("You're out of cups! Let's move on to the next day!");
-
-            }day.currentDay++;
-
+                Console.ReadLine();
+                day.currentDay++;
+                Console.Clear();
+            }
+            else if(paypreference < player.recipe.pricePerCup && preference == player.recipe.sweetness)
+            {
+                Console.WriteLine($"{name} will not pay {player.recipe.pricePerCup} per cup");
+                Console.ReadLine();
+                Console.Clear();
+            }
+            else if (paypreference >= player.recipe.pricePerCup && preference != player.recipe.sweetness)
+            {
+                Console.WriteLine($"{name} likes Lemonade {preference} you made it {player.recipe.sweetness}! \n{player.name} if you want to make more sales you need to make more variations of Lemonade!");
+                Console.ReadLine();
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine($"{name} will not pay {player.recipe.pricePerCup} per cup & likes Lemonade {preference} you made it {player.recipe.sweetness}!");
+                Console.ReadLine();
+                Console.Clear();
+                
+            }
         }
 
        

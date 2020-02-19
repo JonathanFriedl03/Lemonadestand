@@ -8,7 +8,7 @@ namespace LemonadeStand_3DayStarter
 {
     class Game
     {
-        public Day day;
+        // public Day day;
         public Store store;
         public Player player;
         public List<Day> days;
@@ -17,22 +17,36 @@ namespace LemonadeStand_3DayStarter
         // List<Player> players;
         public Game()
         {
-           
+            
+            // (loop) fill up the List<Day>
+
+            for(int i = 0; i < 7; i++)
+            {
+              days =  new Day(rnd, i);
+                days = 
+            }
+
             //players = new List<Player>();
 
         }
 
         public void StartUp()
         {
-            if (player.wallet.Money > 0)
-            {
-                day = new Day(rnd);
+            
+            
+                // day = new Day(rnd);
                 store = new Store();
-                for (int i = 0; i < 7; i++) 
-                {                    
-                    // DisplayGameRules();
-                    GetName();
-                    day.DisplayTodaysWeather(rnd);
+
+            // DisplayGameRules();
+            GetName();
+           
+
+            for (int i = 0; i < 7; i++) 
+             {                    
+                   
+                if (player.wallet.Money > 0)
+                { 
+                    days[i].DisplayTodaysWeather(rnd);
                      //DisplayTodaysInventory();
                     BuyProduct(player);
                     player.recipe.CreateRecipe(player);
@@ -43,9 +57,11 @@ namespace LemonadeStand_3DayStarter
                     {
                         day.customers[j].WillCustomerBuy(player, day);
                     }
-                }
-                 day.daysOfMonth.Add(new Day(rnd)); 
-            }
+                }               
+                day.daysOfMonth.Add(new Day(rnd));
+                day.currentDay++;
+                day.GetDailySales(player, day.buyerCount);
+             }
         }
         public void DisplayGameRules()
         {
@@ -66,7 +82,9 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("Player Please enter your name. Then press Enter");
             string newName = Console.ReadLine();
             player = new Player(newName);
+            Console.Clear();
             return newName;
+            
 
         }
         //private void GameSetup( string userName)
@@ -98,8 +116,10 @@ namespace LemonadeStand_3DayStarter
 
 
             Console.WriteLine("Great now we can make Lemonade!");
-        //    int numberOfLemons = Int32.Parse(Console.ReadLine());
-        //    player.inventory.AddLemonsToInventory(numberOfLemons);
+            // DisplayGameRules();
+            Console.Clear();
+            //    int numberOfLemons = Int32.Parse(Console.ReadLine());
+            //    player.inventory.AddLemonsToInventory(numberOfLemons);
         }
         
 

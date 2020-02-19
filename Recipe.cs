@@ -43,8 +43,8 @@ namespace LemonadeStand_3DayStarter
                 } while (inventoryCheck == false);
               
                     Console.WriteLine("How much do you want to sell each cup of Lemonade for?");
-                pricePerCup = double.Parse(Console.ReadLine());                   
-               
+                pricePerCup = double.Parse(Console.ReadLine());
+                Console.Clear();
             }
             catch (FormatException)
             {
@@ -68,22 +68,24 @@ namespace LemonadeStand_3DayStarter
         }
        public void DetermineSweetSour()
         {
-            if (amountOfLemons >= 0 && amountOfLemons <= 5 && amountOfIceCubes >= 15 && amountOfSugarCubes <= 5)
+
+            if (amountOfLemons <= 5 && amountOfIceCubes >= 15 && amountOfSugarCubes <= 10)
             {
                 sweetness = "Watery";
             }
-            else if (amountOfLemons >= 15 && amountOfIceCubes <= 15 && amountOfSugarCubes <= 5)
+            else if (amountOfLemons >= 15 && amountOfIceCubes <= 15 && amountOfSugarCubes <= 10)
             {
                 sweetness = "Sour";
             }
-            else if (amountOfLemons >= 6 && amountOfIceCubes >= 10 && amountOfSugarCubes <= 7)
+            else if (amountOfLemons >= 6 && amountOfLemons <= 15 && amountOfIceCubes <= 20  && amountOfSugarCubes >=5 && amountOfSugarCubes <= 15)
             {
                 sweetness = "Just Right";
             }
-            else if(amountOfLemons >= 5 && amountOfIceCubes >= 7 && amountOfSugarCubes >= 10)
+            else if(amountOfLemons <= 10 && amountOfIceCubes <= 20 && amountOfSugarCubes >= 10 )
             {
                 sweetness = "Sweet";
             }
+
         }
     }
 }

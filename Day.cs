@@ -8,23 +8,22 @@ namespace LemonadeStand_3DayStarter
 {
     class Day
     {
-        public List<Day> daysOfMonth;
         public List<Customer> customers;
-       
+        public int buyerCount;
         public Weather weather;
         public int currentDay;
-        public Day(Random rnd)
+
+        public Day(Random rnd, int dayNumber)
         {
             customers = new List<Customer>();
             weather = new Weather(rnd);
-            currentDay = 1;
-            daysOfMonth = new List<Day>() ;
+            currentDay = dayNumber;
             GetCustomers(rnd,weather);
         }
          public void DisplayTodaysWeather(Random rnd)
         {
             weather.TodaysWeather(rnd);
-            Console.WriteLine($"\nOn day {currentDay} the forecast is {weather.condition} and the temperature is {weather.temperature}.");
+            Console.WriteLine($"\nOn day {currentDay} the forecast is {weather.condition} and the temperature is {weather.temperature}.\n");
             
         }
 
@@ -52,9 +51,13 @@ namespace LemonadeStand_3DayStarter
             
             
         }
-        public void GetDayOfMonth()
+        public void GetDailySales(Player player,int buyerCount)
         {
-            
+            double todaysSales = 0;
+            todaysSales = buyerCount * player.recipe.pricePerCup;
+            Console.WriteLine($"Today you made ${todaysSales} and have ${player.wallet.Money} in your wallet.");
+            Console.ReadLine();
+            Console.Clear();
 
             //if (currentDay == 1)
             //{

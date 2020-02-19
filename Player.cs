@@ -14,6 +14,7 @@ namespace LemonadeStand_3DayStarter
         public Recipe recipe;
         public string name;
         public Pitcher pitcher;
+        
         // constructor (SPAWNER)
         public Player(string name)
         {
