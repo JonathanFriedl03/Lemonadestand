@@ -73,10 +73,7 @@ namespace LemonadeStand_3DayStarter
             {
                 sweetness = "Watery";
             }
-            else if (amountOfLemons >= 15 && amountOfIceCubes <= 15 && amountOfSugarCubes <= 10)
-            {
-                sweetness = "Sour";
-            }
+            
             else if (amountOfLemons >= 6 && amountOfLemons <= 15 && amountOfIceCubes <= 20  && amountOfSugarCubes >=5 && amountOfSugarCubes <= 15)
             {
                 sweetness = "Just Right";
@@ -84,6 +81,10 @@ namespace LemonadeStand_3DayStarter
             else if(amountOfLemons <= 10 && amountOfIceCubes <= 20 && amountOfSugarCubes >= 10 )
             {
                 sweetness = "Sweet";
+            }
+            else 
+            {
+                sweetness = "Sour";
             }
 
         }

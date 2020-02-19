@@ -9,11 +9,8 @@ namespace LemonadeStand_3DayStarter
     class Lemon : Item
     {
         // member variables (HAS A)
-        public static double Price;
-        static Lemon()
-        {
-            Price = .50;
-        }
+        
+        
         // constructor (SPAWNER)
         public Lemon()
         {

@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
-{
+{//solid principle used in Recipe Class on DetermineSweetness method-single responsibility  
+    //Solid principle used in 
     class Game
     {
         // public Day day;
@@ -17,13 +18,13 @@ namespace LemonadeStand_3DayStarter
         // List<Player> players;
         public Game()
         {
-            
+            days = new List<Day>();
+           
             // (loop) fill up the List<Day>
 
             for(int i = 0; i < 7; i++)
             {
-              days =  new Day(rnd, i);
-                days = 
+                days.Add(new Day(rnd, i+1));               
             }
 
             //players = new List<Player>();
@@ -53,15 +54,19 @@ namespace LemonadeStand_3DayStarter
                     player.inventory.RecipeUsed(player);
                     player.recipe.DetermineSweetSour();
 
-                    for (int j = 0; j < day.customers.Count; j++)
+                    for (int j = 0; j < days[i].customers.Count; j++)
                     {
-                        day.customers[j].WillCustomerBuy(player, day);
+                        days[i].customers[j].WillCustomerBuy(player, days[i]);
                     }
-                }               
-                day.daysOfMonth.Add(new Day(rnd));
-                day.currentDay++;
-                day.GetDailySales(player, day.buyerCount);
-             }
+                    days[i].currentDay++;
+                    days[i].GetDailySales(player, days[i].buyerCount);
+                }else
+                {
+                    Console.WriteLine($"Sorry {player.name} the game is over your wallet is empty!");
+                }
+
+
+            }
         }
         public void DisplayGameRules()
         {
@@ -77,7 +82,7 @@ namespace LemonadeStand_3DayStarter
         }
 
 
-        public string GetName()
+        public string GetName()//Single responsibility
         {
             Console.WriteLine("Player Please enter your name. Then press Enter");
             string newName = Console.ReadLine();
