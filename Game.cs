@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand_3DayStarter
 {//solid principle used in Recipe Class on DetermineSweetness method-single responsibility  
-    //Solid principle used in 
+    //open closed principle used in player class WeeklyProfitLoss method 
     class Game
     {
         // public Day day;
@@ -22,6 +22,7 @@ namespace LemonadeStand_3DayStarter
            
             // (loop) fill up the List<Day>
 
+
             for(int i = 0; i < 7; i++)
             {
                 days.Add(new Day(rnd, i+1));               
@@ -33,18 +34,18 @@ namespace LemonadeStand_3DayStarter
         }
 
         public void StartUp()
-        {         
-           store = new Store();
+        {
+            store = new Store();
             DisplayGameRules();
             GetName();
-             for (int i = 0; i < 7; i++) 
-             {                    
-                   
+            for (int i = 0; i < days.Count; i++)
+            {
+
                 if (player.wallet.Money > 0)
-                { 
+                {
                     days[i].DisplayTodaysWeather(rnd);
                     player.inventory.DisplayInventory(player);
-                    BuyProduct(player,days[i]);
+                    BuyProduct(player, days[i]);
                     player.recipe.CreateRecipe(player);
                     player.inventory.RecipeUsed(player);
                     player.recipe.DetermineSweetSour();
@@ -52,14 +53,14 @@ namespace LemonadeStand_3DayStarter
                     for (int j = 0; j < days[i].customers.Count; j++)
                     {
                         days[i].customers[j].WillCustomerBuy(player, days[i]);
-                    }                    
-                    days[i].GetDailySales(player, days[i].buyerCount);                    
-                      player.wallet.GetPaid(days[i], player);
+                    }
+                    days[i].GetDailySales(player, days[i].buyerCount);
+                    player.wallet.GetPaid(days[i], player);
                     player.WeeklyProfitLossReport(days[i]);
-                  
-                    days[i].currentDay++;
+
+                    
                 }
-                else if(days[i].currentDay == 7)
+                else if (days[i].currentDay == 7)
                 {
                     Console.WriteLine($"A week has passed the game is over you have ${player.wallet.Money}!");
                     Console.ReadLine();
@@ -72,6 +73,14 @@ namespace LemonadeStand_3DayStarter
 
 
             }
+
+
+            Console.WriteLine($"A week has passed the game is over you have ${player.wallet.Money} in your wallet, your weekly sales are ${player.weeklySales} and your weekly supplies cosgt you{player.weeklyMoneyUsedOnSupplies}");
+            Console.WriteLine("Thanks for playing my version of Lemonade stand!");
+            Console.ReadLine();
+
+
+
         }
         public void DisplayGameRules()
         {

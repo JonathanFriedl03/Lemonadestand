@@ -31,13 +31,13 @@ namespace LemonadeStand_3DayStarter
             weeklyProfitLoss = 0;
             weeklySales = 0;
         }
-        public void WeeklyProfitLossReport(Day day)
+        public void WeeklyProfitLossReport(Day day)//single responsibility principle
         {
            
             weeklyProfitLoss = weeklySales - weeklyMoneyUsedOnSupplies;
             if (weeklyProfitLoss < 0)
             {
-                Console.WriteLine($"In {day.currentDay} day(s) you've lost ${Math.Abs(weeklyProfitLoss)}! \n\nMaybe switch up your recipe!");
+                Console.WriteLine($"In {day.currentDay} day(s) you've lost ${Math.Abs(weeklyProfitLoss)}! \n\nMaybe switch up your recipe!");//open/closed example where current day and profits are reusable
                 Console.ReadLine();
                 Console.Clear();
             }
