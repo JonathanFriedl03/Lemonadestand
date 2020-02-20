@@ -45,10 +45,14 @@ namespace LemonadeStand_3DayStarter
                     Console.WriteLine("How much do you want to sell each cup of Lemonade for?");
                 pricePerCup = double.Parse(Console.ReadLine());
                 Console.Clear();
+                Console.WriteLine("Great! Time to sell some Lemonade!");
+                Console.ReadLine();
             }
             catch (FormatException)
             {
                 Console.WriteLine("Not a valid choice");
+                Console.ReadLine();
+                Console.Clear();
                 CreateRecipe(player);
             }
 
@@ -59,6 +63,7 @@ namespace LemonadeStand_3DayStarter
             if (numberOf > stock)
             {
                 return false;
+                
             }
             else
             {

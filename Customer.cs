@@ -35,7 +35,7 @@ namespace LemonadeStand_3DayStarter
                     player.wallet.SalesFromTransaction(player.recipe.pricePerCup);                 
                     player.pitcher.cupsLeftinPitcher--;
                     player.inventory.cups.Remove(player.inventory.cups[0]);
-                Console.WriteLine($"{player.name} you made a sale! {name} bought a cup of Lemonade!");
+                Console.WriteLine($"{player.name} you made a sale! {name} likes Lemonade {player.recipe.sweetness}!");
                    day.buyerCount++;
                 Console.ReadLine();
                 Console.Clear();

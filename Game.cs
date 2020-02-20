@@ -28,28 +28,23 @@ namespace LemonadeStand_3DayStarter
             }
 
             //players = new List<Player>();
-
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
         }
 
         public void StartUp()
-        {
-            
-            
-                // day = new Day(rnd);
-                store = new Store();
-
-            // DisplayGameRules();
+        {         
+           store = new Store();
+            DisplayGameRules();
             GetName();
-           
-
-            for (int i = 0; i < 7; i++) 
+             for (int i = 0; i < 7; i++) 
              {                    
                    
                 if (player.wallet.Money > 0)
                 { 
                     days[i].DisplayTodaysWeather(rnd);
-                     //DisplayTodaysInventory();
-                    BuyProduct(player);
+                    player.inventory.DisplayInventory(player);
+                    BuyProduct(player,days[i]);
                     player.recipe.CreateRecipe(player);
                     player.inventory.RecipeUsed(player);
                     player.recipe.DetermineSweetSour();
@@ -57,12 +52,22 @@ namespace LemonadeStand_3DayStarter
                     for (int j = 0; j < days[i].customers.Count; j++)
                     {
                         days[i].customers[j].WillCustomerBuy(player, days[i]);
-                    }
+                    }                    
+                    days[i].GetDailySales(player, days[i].buyerCount);                    
+                      player.wallet.GetPaid(days[i], player);
+                    player.WeeklyProfitLossReport(days[i]);
+                  
                     days[i].currentDay++;
-                    days[i].GetDailySales(player, days[i].buyerCount);
-                }else
+                }
+                else if(days[i].currentDay == 7)
+                {
+                    Console.WriteLine($"A week has passed the game is over you have ${player.wallet.Money}!");
+                    Console.ReadLine();
+                }
+                else
                 {
                     Console.WriteLine($"Sorry {player.name} the game is over your wallet is empty!");
+                    Console.ReadLine();
                 }
 
 
@@ -75,8 +80,8 @@ namespace LemonadeStand_3DayStarter
             Console.WriteLine("The basic object of the game is to have made a profit of money after 7 days! If you lose all your money before then you lose.");
            // var numberOfPlayers = Int32.Parse(Console.ReadLine());
             //Console.Clear();
-            Console.WriteLine("Please enter a user name!");
-            string userName = Console.ReadLine();
+            Console.ReadLine();
+            Console.Clear();
           
 
         }
@@ -92,35 +97,19 @@ namespace LemonadeStand_3DayStarter
             
 
         }
-        //private void GameSetup( string userName)
-        //{
-        //    for (int i = 0; i < numberOfPlayers; i++)
-        //    {
-        //        Player player = new Player(userName);
-        //        players.Add(player);
-        //    }
 
 
-        //}
-        //public void DisplayTodaysData(Random rnd)
-        //{
-        //    Day today = new Day(rnd);
-        //    Console.WriteLine($"\nOn day {today.currentDay} the forecast is {today.weather.condition} and the temperature is {today.weather.temperature}.");
-        //    Console.WriteLine($"\nYou have {player.inventory.lemons.Count} lemons, {player.inventory.sugarCubes.Count} sugar cubes, {player.inventory.iceCubes.Count} ice cubes, and {player.inventory.cups.Count} cups.");
-        //    Console.WriteLine($"\nBased upon the weather determine how much product to stock up on to make Lemonade! \n\nOne pitcher makes 10 cups of Lemonade.\n\nA pitcher has 30 Ice Cubes, 10 Lemons, and either 0, 10, or 20 sugar Cubes. Depending on how sweet or sour you want it!\n\nLets start with Lemons...");
-            
-        //}
-        public void BuyProduct(Player player)
+    public void BuyProduct(Player player, Day day)
         {
             
-            store.SellLemons(player);
-            store.SellIceCubes(player);
-            store.SellSugarCubes(player);
-            store.SellCups(player);
+            store.SellLemons(player,day);
+            store.SellIceCubes(player, day);
+            store.SellSugarCubes(player,day);
+            store.SellCups(player, day);
             player.pitcher.cupsLeftinPitcher = player.inventory.cups.Count;
 
 
-            Console.WriteLine("Great now we can make Lemonade!");
+          
             // DisplayGameRules();
             Console.Clear();
             //    int numberOfLemons = Int32.Parse(Console.ReadLine());

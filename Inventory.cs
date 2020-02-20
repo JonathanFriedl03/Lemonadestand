@@ -14,7 +14,7 @@ namespace LemonadeStand_3DayStarter
         public List<SugarCube> sugarCubes;
         public List<IceCube> iceCubes;
         public List<Cup> cups;
-        public int moneyUsedOnSupplies;
+        
         // constructor (SPAWNER)
         public Inventory()
         {
@@ -69,8 +69,17 @@ namespace LemonadeStand_3DayStarter
             player.inventory.lemons.RemoveRange(0, player.recipe.amountOfLemons);
             player.inventory.sugarCubes.RemoveRange(0, player.recipe.amountOfSugarCubes);
             player.inventory.iceCubes.RemoveRange(0, player.recipe.amountOfIceCubes);
-            //player.inventory.cups.RemoveRange(0, player.recipe.amountofCups);
+           
+        }
+        public void DisplayInventory(Player player)
+        {
+            Console.WriteLine($"\nYou have {player.inventory.lemons.Count} lemons, {player.inventory.sugarCubes.Count} sugar cubes, {player.inventory.iceCubes.Count} ice cubes, and {player.inventory.cups.Count} cups.");
+            Console.WriteLine($"\nBased upon the weather determine how much product to stock up on to make Lemonade! \n\nLets start with Lemons...");
+            Console.ReadLine();
+            Console.Clear();
 
         }
     }
+  
 }
+

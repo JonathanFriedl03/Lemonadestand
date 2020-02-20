@@ -13,13 +13,13 @@ namespace LemonadeStand_3DayStarter
         private double pricePerSugarCube;
         private double pricePerIceCube;
         private double pricePerCup;
-
+        //private double weeklyMoneyUsedOnSupplies;
         public double PricePerLemon
         {
             get
             {
                 return pricePerLemon;
-            } 
+            }
         }
         public double PricePerSugarCube
         {
@@ -42,67 +42,108 @@ namespace LemonadeStand_3DayStarter
                 return pricePerCup;
             }
         }
+        //public double WeeklyMoneyUsedOnSupplies
+        //{
+        //    get
+        //    {
+        //        return weeklyMoneyUsedOnSupplies;
+        //    }
+        //}
         // constructor (SPAWNER)
+
+
         public Store()
         {
             pricePerLemon = .5;
             pricePerSugarCube = .1;
             pricePerIceCube = .05;
             pricePerCup = .25;
+            //weeklyMoneyUsedOnSupplies = 0;
         }
 
         // member methods (CAN DO)
-        public void SellLemons(Player player)
+        public void SellLemons(Player player, Day day)
         {
-            int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");
+            int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons", player.inventory.lemons.Count, player.wallet.Money);
             double transactionAmount = CalculateTransactionAmount(lemonsToPurchase, pricePerLemon);
-            if(player.wallet.Money >= transactionAmount)
+            DailyTransaction(player, transactionAmount, day);
+            if (player.wallet.Money >= transactionAmount)
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddLemonsToInventory(lemonsToPurchase);
             }
+            else
+            {
+                Console.WriteLine("You don't have enough money to buy that!");
+                Console.ReadLine();
+            }
         }
-
-        public void SellSugarCubes(Player player)
+        
+            public void SellSugarCubes(Player player, Day day)
         {
-            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar cubes");
+            int sugarToPurchase = UserInterface.GetNumberOfItems("sugar cubes", player.inventory.sugarCubes.Count, player.wallet.Money);
             double transactionAmount = CalculateTransactionAmount(sugarToPurchase, pricePerSugarCube);
-            if(player.wallet.Money >= transactionAmount)
+            DailyTransaction(player, transactionAmount,day);
+            if (player.wallet.Money >= transactionAmount)
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddSugarCubesToInventory(sugarToPurchase);
             }
+            else
+            {
+                Console.WriteLine("You don't have enough money to buy that!");
+                Console.ReadLine();
+            }
         }
 
-        public void SellIceCubes(Player player)
+        public void SellIceCubes(Player player, Day day)
         {
-            int iceCubesToPurchase = UserInterface.GetNumberOfItems("ice cubes");
+            int iceCubesToPurchase = UserInterface.GetNumberOfItems("ice cubes", player.inventory.iceCubes.Count, player.wallet.Money);
             double transactionAmount = CalculateTransactionAmount(iceCubesToPurchase, pricePerIceCube);
-            if(player.wallet.Money >= transactionAmount)
+            DailyTransaction(player, transactionAmount, day);
+            if (player.wallet.Money >= transactionAmount)
             {
                 PerformTransaction(player.wallet, transactionAmount);
                 player.inventory.AddIceCubesToInventory(iceCubesToPurchase);
             }
-        }
-
-        public void SellCups(Player player)
-        {
-            int cupsToPurchase = UserInterface.GetNumberOfItems("cups");
-            double transactionAmount = CalculateTransactionAmount(cupsToPurchase, pricePerCup);
-            if(player.wallet.Money >= transactionAmount)
+            else
             {
-                PerformTransaction(player.wallet, transactionAmount);
-                player.inventory.AddCupsToInventory(cupsToPurchase);
+                Console.WriteLine("You don't have enough money to buy that!");
+                Console.ReadLine();
             }
         }
 
-        private double CalculateTransactionAmount(int itemCount, double itemPricePerUnit)
+        public void SellCups(Player player,Day day)
         {
-            double transactionAmount = itemCount * itemPricePerUnit;
-            return transactionAmount;
+            int cupsToPurchase = UserInterface.GetNumberOfItems("cups", player.inventory.cups.Count, player.wallet.Money);
+            double transactionAmount = CalculateTransactionAmount(cupsToPurchase, pricePerCup);
+            DailyTransaction(player, transactionAmount,day);
+            if (player.wallet.Money >= transactionAmount)
+            {
+                PerformTransaction(player.wallet, transactionAmount);
+                player.inventory.AddCupsToInventory(cupsToPurchase);
+                Console.WriteLine("Ok Time to make your recipe!");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("You don't have enough money to buy that!");
+                Console.ReadLine();
+            }
+        }
+        private void DailyTransaction(Player player, double transactionAmount, Day day)
+        {
+            player.weeklyMoneyUsedOnSupplies += transactionAmount;
+            day.moneyUsedOnSupplies += transactionAmount;
         }
 
-        private void PerformTransaction(Wallet wallet, double transactionAmount)
+        private double CalculateTransactionAmount(int itemCount, double itemPricePerUnit)
+    {
+        double transactionAmount = itemCount * itemPricePerUnit;
+        return transactionAmount;
+    }
+
+    private void PerformTransaction(Wallet wallet, double transactionAmount)
         {
             wallet.PayMoneyForItems(transactionAmount);
         }
